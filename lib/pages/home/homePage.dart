@@ -4,7 +4,6 @@ import 'package:mysecondapp/models/chatSportiObj.dart';
 import 'package:mysecondapp/models/convercation.dart';
 import 'package:mysecondapp/models/sportiObj.dart';
 import 'package:mysecondapp/models/user.dart';
-import 'package:mysecondapp/pages/home/conversationScreen.dart';
 import 'package:mysecondapp/pages/home/setting_form.dart';
 
 import 'package:mysecondapp/pages/home/tabs.dart';

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mysecondapp/models/user.dart';
 
 import 'package:mysecondapp/services/database.dart';
-import 'package:provider/provider.dart';
 
 class SettingForm extends StatefulWidget {
   SettingForm({Key? key}) : super(key: key);
