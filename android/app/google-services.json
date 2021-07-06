@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123572917886",
+    "project_id": "sportigram-47e66",
+    "storage_bucket": "sportigram-47e66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123572917886:android:9affac893a0e1ee920ea2f",
+        "android_client_info": {
+          "package_name": "com.example.mysecondapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123572917886-ba0m2oia1cmo7lrqk11ocfjgl3tlfiou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABG_LwzyZzASfP4QAAGNMu7Kc4OxnWRyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123572917886-ba0m2oia1cmo7lrqk11ocfjgl3tlfiou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
