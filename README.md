@@ -21,4 +21,11 @@ samples, guidance on mobile development, and a full API reference.
 
 # Screenshots
 ![login page](/Screenshot/Screenshot_20210705_235235_com.example.mysecondapp.jpg)
+![signUp page](/Screenshot/Screenshot_20210705_235238_com.example.mysecondapp.jpg)
+![profile page](/Screenshot/Screenshot_20210705_235300_com.example.mysecondapp.jpg)
+![setting page](/Screenshot/Screenshot_20210705_235303_com.example.mysecondapp.jpg)
+![feed page](/Screenshot/Screenshot_20210705_235329_com.example.mysecondapp.jpg)
+![message page](/Screenshot/Screenshot_20210705_235340_com.example.mysecondapp.jpg)
+![matched page](/Screenshot/Screenshot_20210705_235352_com.example.mysecondapp.jpg)
+
 
