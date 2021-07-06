@@ -1,10 +1,10 @@
-# mysecondapp
+# Flutter MeetUp app
 
-A new Flutter project.
+A Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project matches same interest people and they can chat also.
 
 A few resources to get you started if this is your first Flutter project:
 
