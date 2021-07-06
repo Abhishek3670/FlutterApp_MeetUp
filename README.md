@@ -20,12 +20,20 @@ samples, guidance on mobile development, and a full API reference.
 - dart
 
 # Screenshots
-![login page](/Screenshot/Screenshot_20210705_235235_com.example.mysecondapp.jpg)
-![signUp page](/Screenshot/Screenshot_20210705_235238_com.example.mysecondapp.jpg)
-![profile page](/Screenshot/Screenshot_20210705_235300_com.example.mysecondapp.jpg)
-![setting page](/Screenshot/Screenshot_20210705_235303_com.example.mysecondapp.jpg)
-![feed page](/Screenshot/Screenshot_20210705_235329_com.example.mysecondapp.jpg)
-![message page](/Screenshot/Screenshot_20210705_235340_com.example.mysecondapp.jpg)
-![matched page](/Screenshot/Screenshot_20210705_235352_com.example.mysecondapp.jpg)
-<img src='/Screenshot/Screenshot_20210705_235352_com.example.mysecondapp.jpg' width="324" height="324"> 
+<p align = "center">
+<img src='/Screenshot/Screenshot_20210705_235235_com.example.mysecondapp.jpg' width="150" height="324"> 
 
+<img src='/Screenshot/Screenshot_20210705_235238_com.example.mysecondapp.jpg' width="150" height="324"> 
+
+<img src='/Screenshot/Screenshot_20210705_235300_com.example.mysecondapp.jpg' width="150" height="324"> 
+
+<img src='/Screenshot/Screenshot_20210705_235303_com.example.mysecondapp.jpg' width="150" height="324"> 
+
+<img src='/Screenshot/Screenshot_20210705_235329_com.example.mysecondapp.jpg' width="150" height="324"> 
+
+<img src='/Screenshot/Screenshot_20210705_235352_com.example.mysecondapp.jpg' width="150" height="324"> 
+  
+<img src='/Screenshot/Screenshot_20210705_235340_com.example.mysecondapp.jpg' width="150" height="324"> 
+
+
+</p>
