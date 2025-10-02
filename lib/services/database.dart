@@ -1,131 +1,75 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mysecondapp/models/chatSportiObj.dart';
-
 import 'package:mysecondapp/models/convercation.dart';
 import 'package:mysecondapp/models/sportiObj.dart';
 import 'package:mysecondapp/models/user.dart';
+import 'package:mysecondapp/services/local_database.dart';
+import 'dart:async';
 
 class DatabaseService {
   final String uid;
   String chatId = '';
+  
   DatabaseService({required this.chatId, required this.uid});
-  //collection reference
 
-  final CollectionReference sportiCollection =
-      FirebaseFirestore.instance.collection('aatish');
-
-  final CollectionReference chatCollection =
-      FirebaseFirestore.instance.collection('chatRoom');
-
-  final CollectionReference likedCollection =
-      FirebaseFirestore.instance.collection('likedRoom');
-
-  Future updateUserData(String sport, String name, var strength) async {
-    return await sportiCollection
-        .doc(uid)
-        .set({'id': uid, 'sport': sport, 'name': name, 'strength': strength});
+  // Update user data
+  Future<void> updateUserData(String sport, String name, var strength) async {
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return await localDB.updateUserData(sport, name, strength);
   }
 
-  //sporti list from snapshot
-  List<Sporti> _sportiListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return Sporti(
-          name: doc['name'],
-          sport: doc['sport'],
-          strength: doc['strength'],
-          sportiId: doc['id']);
-    }).toList();
-  }
-
-  // get sportigramm stream
+  // Get sportis stream
   Stream<List<Sporti>> get sportis {
-    return sportiCollection.snapshots().map(_sportiListFromSnapshot);
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return localDB.getSportis().asStream();
   }
 
-  //User data from snapshot
-  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
-    return UserData(
-        name: snapshot.get('name'),
-        uid: uid,
-        sport: snapshot['sport'],
-        strength: snapshot['strength']);
-  }
-
-  //get user doc stream
+  // Get user data stream
   Stream<UserData> get userData {
-    return sportiCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return localDB.getUserData().asStream();
   }
 
-  // // chat roomm creation
-  // Future createChatRoom(String chatRoomId, dynamic chatRoomMap) async {
-  //   return likedCollection.doc(chatRoomId).collection('chat').add(chatRoomMap);
-  // }
-
-  // liked room creation
-  Future createLikedRoom(String likedRoomId, String interest, String likedBy,
+  // Create liked room
+  Future<void> createLikedRoom(String likedRoomId, String interest, String likedBy,
       String likedTo) async {
-    return await likedCollection.doc(likedRoomId).set({
-      'chatRoomId': likedRoomId,
-      'interest': interest,
-      'likedBy': likedBy,
-      'likedTo': likedTo
-    });
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return await localDB.createLikedRoom(likedRoomId, interest, likedBy, likedTo);
   }
 
-  // sporti list from snapshot
-  List<ChatSporti> _chatSportiListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return ChatSporti(
-          chatId: doc['chatRoomId'],
-          interest: doc['interest'],
-          likedTo: doc['likedTo'],
-          likedBy: doc['likedBy']);
-    }).toList();
-  }
-
-  // get sportigramm stream
+  // Get chat sportis stream
   Stream<List<ChatSporti>> get chatSportis {
-    return likedCollection.snapshots().map(_chatSportiListFromSnapshot);
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return localDB.getChatSportis().asStream();
   }
 
-  // liked room creation
-  Future getcreateLikedRoom(String likedRoomId) async {
-    return likedCollection.doc(likedRoomId).snapshots();
+  // Get or create liked room
+  Future<void> getcreateLikedRoom(String likedRoomId) async {
+    // This is a placeholder - in a real implementation you might want to do something here
+    return;
   }
 
-  // chat room message
-  Future createConversationMessage(String chatRoomId) async {
-    return likedCollection.doc(chatRoomId).collection('chats').doc();
+  // Create conversation message
+  Future<void> createConversationMessage(String chatRoomId) async {
+    // This is a placeholder - in a real implementation you might want to do something here
+    return;
   }
 
-  Future addConversationMessage(String chatRoomId, message, sendBy) async {
-    return likedCollection.doc(chatRoomId).collection('chats').doc().set({
-      'message': message,
-      'sendBy': sendBy,
-    });
+  // Add conversation message
+  Future<void> addConversationMessage(String chatRoomId, message, sendBy) async {
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return await localDB.addConversationMessage(chatRoomId, message, sendBy);
   }
 
-  Future getConversationMessage(String chatRoomId) async {
+  // Get conversation message
+  Future<void> getConversationMessage(String chatRoomId) async {
     chatId = chatRoomId;
-    return chatCollection
-        .doc(chatRoomId)
-        .collection('chats')
-        .snapshots()
-        .map(_conversationSnapshot);
+    // This is a placeholder - in a real implementation you might want to do something here
+    return;
   }
 
-  List<ConversationObj> _conversationSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return ConversationObj(
-          message: doc['message'], sendBy: doc['sendBy'], time: doc['time']);
-    }).toList();
-  }
-
+  // Get conversation data stream
   Stream<List<ConversationObj>> get conversationData {
-    return likedCollection
-        .doc()
-        .collection('chats')
-        .snapshots()
-        .map(_conversationSnapshot);
+    LocalDatabaseService localDB = LocalDatabaseService(uid: uid, chatId: chatId);
+    return localDB.getAllConversationMessages().asStream();
   }
 }

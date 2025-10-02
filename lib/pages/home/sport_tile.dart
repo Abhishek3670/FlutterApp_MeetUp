@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mysecondapp/models/sportiObj.dart';
 import 'package:mysecondapp/models/user.dart';
-
 import 'package:mysecondapp/services/database.dart';
 
 class SportiTile extends StatefulWidget {
@@ -17,7 +14,8 @@ class SportiTile extends StatefulWidget {
 }
 
 class _SportiTileState extends State<SportiTile> {
-  User? user = FirebaseAuth.instance.currentUser;
+  // Mock user for demonstration
+  String userId = 'current_user';
 
   getChatRoomId(String a, String b) {
     if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
@@ -27,7 +25,7 @@ class _SportiTileState extends State<SportiTile> {
   }
 
   validateSportiTile() {
-    if (user!.uid != widget.sporti.sportiId)
+    if (userId != widget.sporti.sportiId)
       return true;
     else
       return false;
@@ -40,7 +38,7 @@ class _SportiTileState extends State<SportiTile> {
       String likedBy = userData.name;
       String likedTo = sporti.name;
 
-      DatabaseService(uid: user!.uid, chatId: '')
+      DatabaseService(uid: userId, chatId: '')
           .createLikedRoom(likedRoomId, interest, likedBy, likedTo);
     } else
       print("Not Matched");
@@ -50,10 +48,11 @@ class _SportiTileState extends State<SportiTile> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+    // Mock user for demonstration
+    String currentUserId = 'current_user';
 
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid, chatId: '').userData,
+        stream: DatabaseService(uid: currentUserId, chatId: '').userData,
         builder: (context, snapshot) {
           UserData? userData = snapshot.data;
           return validateSportiTile()

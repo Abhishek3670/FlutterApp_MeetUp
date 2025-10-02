@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysecondapp/models/chatSportiObj.dart';
 import 'package:mysecondapp/models/convercation.dart';
@@ -27,7 +26,8 @@ class HomePage extends StatelessWidget {
           });
     }
 
-    User? user = FirebaseAuth.instance.currentUser;
+    // Mock user for demonstration
+    String userId = 'current_user';
     return MultiProvider(
       providers: [
         StreamProvider<List<Sporti>?>.value(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
         StreamProvider<UserData>(
           initialData: UserData(name: '', uid: '', sport: '', strength: 0),
           create: (context) =>
-              DatabaseService(uid: user!.uid, chatId: '').userData,
+              DatabaseService(uid: userId, chatId: '').userData,
         )
       ],
       child: Scaffold(
@@ -77,36 +77,5 @@ class HomePage extends StatelessWidget {
         body: TabPages(),
       ),
     );
-    // return StreamProvider<List<Sporti>?>.value(
-    //     value: DatabaseService(uid: '').sportis,
-    //     initialData: null,
-    //     child: Scaffold(
-    //       appBar: AppBar(
-    //         title: Text("Spotigramm"),
-    //         actions: [
-    //           TextButton.icon(
-    //               onPressed: () async {
-    //                 await _auth.logOut();
-    //               },
-    //               icon: Icon(
-    //                 Icons.exit_to_app,
-    //                 color: Colors.white,
-    //               ),
-    //               label: Text(
-    //                 'Sign Out',
-    //                 style: TextStyle(color: Colors.white),
-    //               )),
-    //           TextButton.icon(
-    //             onPressed: () => _showSettingPanel(),
-    //             icon: Icon(
-    //               Icons.settings,
-    //               color: Colors.white,
-    //             ),
-    //             label: Text(''),
-    //           )
-    //         ],
-    //       ),
-    //       body: TabPages(),
-    //     ));
   }
 }

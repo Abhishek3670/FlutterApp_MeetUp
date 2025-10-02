@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mysecondapp/models/chatSportiObj.dart';
@@ -18,23 +17,17 @@ class ChatTile extends StatefulWidget {
 
 class _ChatTileState extends State<ChatTile> {
   bool isPressed = false;
-  User? user = FirebaseAuth.instance.currentUser;
+  // Mock user for demonstration
+  String userId = 'current_user';
+  
   createChatRoomAndStartConversation(String chatId) {
-    // String message = '';
-    // String sender = widget.chatsporti.chatId;
-    DatabaseService(uid: user!.uid, chatId: '')
+    DatabaseService(uid: userId, chatId: '')
         .createConversationMessage(chatId);
   }
 
   @override
   Widget build(BuildContext context) {
     UserData user = Provider.of<UserData>(context);
-    // chatIdValidator() {
-    //   String iD = widget.chatsporti.chatId;
-    //   for (int i = 0; i <= iD.length; i++) {
-    //     iD.split('_');
-    //   }
-    // }
 
     validateUser() {
       if (widget.chatsporti.likedBy == user.name)
@@ -78,6 +71,5 @@ class _ChatTileState extends State<ChatTile> {
             ),
           )
         : Container();
-    //    });
   }
 }

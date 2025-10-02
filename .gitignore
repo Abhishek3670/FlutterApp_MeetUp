@@ -1,0 +1,111 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+/flutter_export_environment.sh
+/web/output/
+/web/packages/
+/web/assets/
+
+# Coverage
+coverage/
+
+# Android related
+*/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+**/android/keystore.properties
+**/android/app/generated/
+**/android/app/src/main/res/values/strings.xml
+
+# iOS/XCode related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/.sconsign.dblite
+**/ios/.tags*
+**/ios/.vagrant/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/.git/
+**/ios/Pods/Manifest.lock
+**/ios/Pods/Pods.xcodeproj/
+**/ios/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Runner.xcworkspace/contents.xcworkspacedata
+**/ios/Runner.xcodeproj/project.pbxproj
+**/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+**/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+**/ios/Runner.xcworkspace/contents.xcworkspacedata
+**/ios/Runner/Runner-Bridging-Header.h
+**/ios/ServiceDefinitions.json
+
+# macOS related
+**/macos/Flutter/ephemeral/
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Windows
+*.exe
+*.pdb
+*.mdb
+*.dll
+*.dll.config
+*.exe.config
+*.rsp
+
+# Web
+/web/main.dart.js
+/web/main.dart.js.map
+/web/main.dart.js.deps
+/web/packages/
+/web/assets/
+
+# Secrets
+*.secrets
+*.env
+.env*
+
+# Local database
+*.db
+*.db-*

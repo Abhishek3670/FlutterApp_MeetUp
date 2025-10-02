@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mysecondapp/models/chatSportiObj.dart';
 import 'package:mysecondapp/models/convercation.dart';
@@ -15,21 +13,13 @@ class Conversation extends StatefulWidget {
 }
 
 class _ConversationState extends State<Conversation> {
-  User? user = FirebaseAuth.instance.currentUser;
+  // Current user ID
+  String userId = 'current_user';
 
   TextEditingController messageController = new TextEditingController();
-  late Stream chatMessageStream;
 
   @override
   void initState() {
-    DatabaseService(uid: user!.uid, chatId: widget.chatRoomId.chatId)
-        .getConversationMessage(widget.chatRoomId.chatId)
-        .then((value) {
-      chatMessageStream = value;
-      print(chatMessageStream.map((event) => event.toString()));
-    });
-    // DatabaseService(uid: user!.uid, chatId: '').conversationData;
-
     super.initState();
   }
 
@@ -37,25 +27,27 @@ class _ConversationState extends State<Conversation> {
   Widget build(BuildContext context) {
     UserData user = Provider.of<UserData>(context);
     final chatter = Provider.of<List<ConversationObj>>(context);
-    sendMessage() {
+    
+    sendMessage() async {
       if (messageController.text.isNotEmpty) {
         String message = messageController.text;
-
         String sendby = widget.chatRoomId.likedBy;
-        // Map<String, dynamic> messageMap = {
-        //   'message': messageController.text,
-        //   'sendBy': widget.chatRoomId.likedBy,
-        // };
-        DatabaseService(uid: user.uid, chatId: '')
-            .addConversationMessage(widget.chatRoomId.chatId, message, sendby);
+        
+        // Save message to local database
+        DatabaseService dbService = DatabaseService(uid: user.uid, chatId: widget.chatRoomId.chatId);
+        await dbService.addConversationMessage(widget.chatRoomId.chatId, message, sendby);
+        
+        // Clear the text field
+        messageController.text = '';
+        
+        // Refresh the UI
+        setState(() {});
       } else {
         print("empty text");
       }
-      messageController.text = '';
     }
 
     Widget chatMessageList() {
-      print(chatter.length);
       return ListView.builder(
           itemCount: chatter.length,
           itemBuilder: (context, index) {
@@ -91,7 +83,7 @@ class _ConversationState extends State<Conversation> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => {sendMessage()},
+                      onTap: () => sendMessage(),
                       child: Container(
                         height: 40,
                         width: 40,
@@ -122,6 +114,7 @@ class MessageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(8.0),
       child: Text(msg),
     );
   }

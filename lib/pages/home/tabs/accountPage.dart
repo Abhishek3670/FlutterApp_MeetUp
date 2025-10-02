@@ -1,16 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mysecondapp/models/user.dart';
 import 'package:mysecondapp/services/database.dart';
 
 class AccountTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+    // Mock user for demonstration
+    String userId = 'current_user';
 
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid, chatId: '').userData,
+        stream: DatabaseService(uid: userId, chatId: '').userData,
         builder: (context, snapshot) {
           UserData? userData = snapshot.data;
 

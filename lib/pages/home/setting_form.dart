@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mysecondapp/models/user.dart';
-
 import 'package:mysecondapp/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -30,11 +27,11 @@ class _SettingFormState extends State<SettingForm> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-    //final user = Provider.of<UserData>(context);
-
+    // Mock user for demonstration
+    String userId = 'current_user';
+    
     return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user!.uid, chatId: '').userData,
+        stream: DatabaseService(uid: userId, chatId: '').userData,
         builder: (context, snapshot) {
           UserData? userData = snapshot.data;
 
@@ -86,7 +83,7 @@ class _SettingFormState extends State<SettingForm> {
                 TextFormField(
                   onChanged: (value) {
                     setState(() {
-                      _currentStrength = value as int?;
+                      _currentStrength = int.tryParse(value) ?? 0;
                     });
                   },
                   decoration: InputDecoration(hintText: 'Age'),
@@ -97,7 +94,7 @@ class _SettingFormState extends State<SettingForm> {
                 FloatingActionButton.extended(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      await DatabaseService(uid: user.uid, chatId: '')
+                      await DatabaseService(uid: userId, chatId: '')
                           .updateUserData(
                               _currentSport ?? userData!.sport,
                               _currentName ?? userData!.name,
